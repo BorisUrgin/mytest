@@ -4,7 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class News extends Model
+class Category extends Model
 {
-    protected $fillable = ['title', 'img', 'description'];
+    protected $fillable = ['name'];
+
+    public function shops()
+    {
+        return $this->hasMany(Shops::class);
+    }
 }
