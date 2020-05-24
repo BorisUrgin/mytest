@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNewsTable extends Migration
+class CreateShopTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,10 +15,18 @@ class CreateNewsTable extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
-            $table->string('manufacturer');
+            $table->unsignedBigInteger('manufacturer_id');
+            $table->unsignedBigInteger('category_id');
             $table->string('img');
             $table->text('description');
-            $table->string('type');
+
+            $table->foreign('manufacturer_id')
+                    ->references('id')->on('manufacturers')
+                ->onDelete('restrict');
+
+            $table->foreign('category_id')
+                ->references('id')->on('categories')
+                ->onDelete('restrict');
 
             $table->timestamps();
         });

@@ -5,7 +5,8 @@
 use App\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
-
+use App\Manufacturer;
+use App\Category;
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -27,24 +28,13 @@ $factory->define(\App\Shops::class, function (Faker $faker) {
         'shop-item-6.jpg'
 
     ];
-    $names=[
-        "BAXTER OF CALIFORNIA",
-        "SUAVETICO",
-        "AMERICAN CREW"
-
-    ];
-    $types=[
-        "care",
-        "razor",
-        "acces"
-    ];
-
-
+    $manufacturerIds = Manufacturer::all()->pluck('id')->toArray();
+    $categoryIds = Category::all()->pluck('id')->toArray();
 
     return [
-        'manufacturer' => $names[array_rand($names)],
+        'manufacturer_id' => $manufacturerIds[array_rand($manufacturerIds)],
         'img' => $images[array_rand($images)],
         'description' => $faker->text,
-        'type'=>$types[array_rand($types)]
+        'category_id'=>$categoryIds[array_rand($categoryIds)]
     ];
 });
