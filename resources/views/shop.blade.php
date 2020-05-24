@@ -52,21 +52,14 @@
 
 
                 <h3>Группы товаров</h3>
-                <label class="shop-checkbox shop-groups">
-                    <input type="radio" name="group">
-                    <span class="checkbox-indicator"></span>
-                    Бритвенные принадлежности
-                </label>
-                <label class="shop-checkbox shop-groups">
-                    <input type="radio" checked="checked" name="group">
-                    <span class="checkbox-indicator"></span>
-                    Средства для ухода
-                </label>
-                <label class="shop-checkbox shop-groups">
-                    <input type="radio" name="group">
-                    <span class="checkbox-indicator"></span>
-                    Аксессуары
-                </label>
+                @foreach($categories as $item)
+                    <label class="shop-checkbox shop-groups">
+
+                        <input type="radio" name="group" value="{{$item->id}}" >
+                        <span class="checkbox-indicator"></span>
+                        {{$item->name}}
+                    </label>
+                @endforeach
 
                 <button class="btn" type="submit">Показать</button>
 
@@ -83,8 +76,8 @@
                     <img src="{{ asset('/img/' . $item->img) }}" width="220px">
                     </a>
                     <div class="item-info">
-                        <p>"{{ $item->type }}" <p>
-                        <p class="manufacturer">"{{ $item->manufacturer }}"</p>
+                        <p>"{{ $item->category->name }}" <p>
+                        <p class="manufacturer">"{{ $item->manufacturer->name }}"</p>
                         <div class="price clearfix">
                             <label>4500p</label>
                             <button class="btn">Купить</button>

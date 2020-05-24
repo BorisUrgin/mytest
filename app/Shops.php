@@ -17,6 +17,6 @@ class Shops extends Model
 
     public function manufacturer()
     {
-        return $this->belongsTo(Manufacturer::class, 'id', 'manufacturer_id');
+        return $this->belongsTo(Manufacturer::class, 'manufacturer_id', 'id');
     }
 }
